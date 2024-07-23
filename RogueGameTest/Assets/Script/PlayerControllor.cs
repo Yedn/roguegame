@@ -9,6 +9,8 @@ public class PlayerControllor : MonoBehaviour
     public GameObject Bullet;
     public Rigidbody2D rb;
 
+    public int keyNum = 10;
+
     public Animator head_anima;
     public Animator body_anima;
 
