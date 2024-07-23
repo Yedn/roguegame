@@ -216,7 +216,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1003878961}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: cddd7d6b40a84d24281c5b2ae490761a, type: 2}
   m_CullingMode: 0
@@ -482,6 +482,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Bullet: {fileID: 8401024319981406725, guid: 160fb4d3d57efd043b61b2379fb252c0, type: 3}
   rb: {fileID: 2036293641}
+  head_anima: {fileID: 1003878964}
+  body_anima: {fileID: 2077835267}
   speed: 3
   cooltime: 1
   x: 0
@@ -641,7 +643,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2077835264}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 3d7eb02ce3ec1354fb7108ff8fe7213a, type: 2}
   m_CullingMode: 0

@@ -1,16 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class PlayerControllor : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject Bullet;
-    private SpriteRenderer SR;
     public Rigidbody2D rb;
 
-/*    public Animator head_anima;
-    public Animator body_anima;*/
+    public Animator head_anima;
+    public Animator body_anima;
 
     public float speed = 3.0f;
     public float cooltime = 1.0f;
@@ -28,6 +28,7 @@ public class PlayerControllor : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
+            head_anima.SetTrigger("isUp");
             GameObject bulletObj = Instantiate(Bullet);
             bulletObj.transform.position = transform.position;
             BulletControl bullet = bulletObj.GetComponent<BulletControl>();
@@ -35,6 +36,7 @@ public class PlayerControllor : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
+            head_anima.SetTrigger("isDown");
             GameObject bulletObj = Instantiate(Bullet);
             bulletObj.transform.position = transform.position;
             BulletControl bullet = bulletObj.GetComponent<BulletControl>();
@@ -42,7 +44,7 @@ public class PlayerControllor : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-
+            head_anima.SetTrigger("isRight");
             GameObject bulletObj = Instantiate(Bullet);
             bulletObj.transform.position = transform.position;
             BulletControl bullet = bulletObj.GetComponent<BulletControl>();
@@ -50,7 +52,7 @@ public class PlayerControllor : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-
+            head_anima.SetTrigger("isLeft");
             GameObject bulletObj = Instantiate(Bullet);
             bulletObj.transform.position = transform.position;
             BulletControl bullet = bulletObj.GetComponent<BulletControl>();
@@ -62,8 +64,8 @@ public class PlayerControllor : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        SR = GetComponent<SpriteRenderer>();
-        //body_anima = GetComponent<Animator>();
+/*        body_anima = GetComponent<Animator>();
+        head_anima = GetComponent<Animator>();*/
     }
 
     // Update is called once per frame
@@ -73,5 +75,14 @@ public class PlayerControllor : MonoBehaviour
         y = Input.GetAxisRaw("Vertical_Player");
         Move(x, y);
         Shoot();
+        SwitchAnimation();
+    }
+
+    public void SwitchAnimation()
+    {
+        body_anima.SetFloat("Horizontal", x);
+        body_anima.SetFloat("Vertical", y);
+        head_anima.SetFloat("Horizontal", x);
+        head_anima.SetFloat("Vertical", y);
     }
 }
