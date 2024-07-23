@@ -482,8 +482,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Bullet: {fileID: 8401024319981406725, guid: 160fb4d3d57efd043b61b2379fb252c0, type: 3}
   rb: {fileID: 2036293641}
-  head_anima: {fileID: 1003878964}
-  body_anima: {fileID: 2077835267}
   speed: 3
   cooltime: 1
   x: 0
@@ -561,7 +559,6 @@ GameObject:
   - component: {fileID: 2077835265}
   - component: {fileID: 2077835266}
   - component: {fileID: 2077835267}
-  - component: {fileID: 2077835268}
   m_Layer: 7
   m_Name: PlayerBody
   m_TagString: Untagged
@@ -657,20 +654,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2077835268
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2077835264}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c5e3b56bef1ec44daaa5ba2c151f4c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Speed: 15
-  LiveTime: 3
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -10,15 +10,15 @@ public class BulletControl : MonoBehaviour
     private Vector2 _Direction;
     private float _HasLiveTime = 0;
 
-    private void FixedUpdate()
+    private void Update()
     {
-        _HasLiveTime += Time.fixedDeltaTime;
+        _HasLiveTime += Time.deltaTime;
         if (_HasLiveTime > LiveTime)
         {
             Destroy(gameObject);
         }
 
-        transform.Translate(_Direction * (Speed * Time.fixedDeltaTime));
+        transform.Translate(_Direction * (Speed * Time.deltaTime));
     }
 
     public void SetDirection(Vector2 dir)
@@ -29,7 +29,7 @@ public class BulletControl : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Wall"))
+        if (other.gameObject.CompareTag("Wall") || other.gameObject.CompareTag("Door"))
         {
             Destroy(gameObject);
         }
