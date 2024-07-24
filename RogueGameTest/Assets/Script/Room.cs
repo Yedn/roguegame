@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
-    public GameObject DoorUp,DoorDown,DoorLeft,DoorRight;
-    public int StepToStart;
-    public int DoorNum;
-    public bool LeftHasRoom, RightHasRoom, UpHasRoom, DownHasRoom;
+    public static Room room;
+
+    public GameObject DoorUp,DoorDown,DoorLeft,DoorRight;//四个方向的门
+    public int StepToStart;//离开始房间距离
+    public int DoorNum;//有几个门
+    public bool LeftHasRoom, RightHasRoom, UpHasRoom, DownHasRoom;//四个方向有没有门
+    public int EnemyNum;//房间内敌人数量
+    private void Awake()
+    {
+        room = GetComponent<Room>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,10 +25,9 @@ public class Room : MonoBehaviour
         DoorLeft.SetActive(LeftHasRoom);
     }
 
-    public void UpdateRoom(float xOffset,float yOffset)
+    public void UpdateRoom(float xOffset,float yOffset)//算StepToStart和DoorNum
     {
         StepToStart = (int)(Mathf.Abs(transform.position.x / xOffset) + Mathf.Abs(transform.position.y / yOffset));
-
         if (LeftHasRoom)
         {
             DoorNum++;
@@ -39,11 +46,42 @@ public class Room : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)//玩家碰门
     {
         if (collision.CompareTag("Player"))
         {
             CameraControllor.instance.ChangeTarget(transform);
         }
     }
+
+    public void OpenTheDoor()
+    {
+        if (EnemyNum == 0)
+        {
+            if (LeftHasRoom)
+            {
+                transform.Find("Door_left").Find("Door_L_Open").gameObject.SetActive(true);
+                //transform.Find("Door_L_Open").gameObject.SetActive(true);
+                Destroy(transform.Find("Door_left").gameObject.GetComponent<Rigidbody2D>());
+            }
+            if (UpHasRoom)
+            {
+                transform.Find("Door_up").Find("Door_U_Open").gameObject.SetActive(true);
+                //transform.Find("Door_U_Open").gameObject.SetActive(true);
+                Destroy(transform.Find("Door_up").gameObject.GetComponent<Rigidbody2D>());
+            }
+            if (DownHasRoom)
+            {
+                transform.Find("Door_down").Find("Door_D_Open").gameObject.SetActive(true);
+                //transform.Find("Door_D_Open").gameObject.SetActive(true);
+                Destroy(transform.Find("Door_down").gameObject.GetComponent<Rigidbody2D>());
+            }
+            if (RightHasRoom)
+            {
+                transform.Find("Door_right").Find("Door_R_Open").gameObject.SetActive(true);
+                //transform.Find("Door_R_Open").gameObject.SetActive(true);
+                Destroy(transform.Find("Door_right").gameObject.GetComponent<Rigidbody2D>());
+            }
+        }
+    }//开门
 }

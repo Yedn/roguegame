@@ -9,8 +9,6 @@ public class PlayerControllor : MonoBehaviour
     public GameObject Bullet;
     public Rigidbody2D rb;
 
-    public int keyNum = 10;
-
     public Animator head_anima;
     public Animator body_anima;
 
@@ -20,12 +18,22 @@ public class PlayerControllor : MonoBehaviour
     public float x = 0;
     public float y = 0;
 
+    [Header("PlayerInformation")]
+    public float MaxHp = 6.0f;
+    public float CurrentHp;
+
+    public float shootatk = 5;
+    public float boomatk = 10;
+    public int keyNum = 0;
+    public int Money = 0;
+
+    private bool isAttacking = false;
 
     void Move(float x, float y)
     {
         //改变物体速度
         rb.velocity = new Vector2(x * speed, y * speed);
-    }
+    }//WASD走路
     void Shoot()
     {
         if (Input.GetKeyDown(KeyCode.UpArrow))
@@ -35,6 +43,7 @@ public class PlayerControllor : MonoBehaviour
             bulletObj.transform.position = transform.position;
             BulletControl bullet = bulletObj.GetComponent<BulletControl>();
             bullet.SetDirection(Vector2.up);
+            isAttacking = true;
         }
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
@@ -43,6 +52,7 @@ public class PlayerControllor : MonoBehaviour
             bulletObj.transform.position = transform.position;
             BulletControl bullet = bulletObj.GetComponent<BulletControl>();
             bullet.SetDirection(Vector2.down);
+            isAttacking = true;
         }
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
@@ -51,6 +61,7 @@ public class PlayerControllor : MonoBehaviour
             bulletObj.transform.position = transform.position;
             BulletControl bullet = bulletObj.GetComponent<BulletControl>();
             bullet.SetDirection(Vector2.right);
+            isAttacking = true;
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
@@ -59,6 +70,15 @@ public class PlayerControllor : MonoBehaviour
             bulletObj.transform.position = transform.position;
             BulletControl bullet = bulletObj.GetComponent<BulletControl>();
             bullet.SetDirection(Vector2.left);
+            isAttacking = true;
+        }
+    }//Arrow键射击
+
+    void NotAttacking()//未在攻击
+    {
+        if (Input.GetAxisRaw("Vertical")==0 && Input.GetAxisRaw("Horizontal")==0)
+        {
+            isAttacking=false;
         }
     }
 
@@ -66,8 +86,7 @@ public class PlayerControllor : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-/*        body_anima = GetComponent<Animator>();
-        head_anima = GetComponent<Animator>();*/
+        CurrentHp = MaxHp;
     }
 
     // Update is called once per frame
@@ -77,14 +96,32 @@ public class PlayerControllor : MonoBehaviour
         y = Input.GetAxisRaw("Vertical_Player");
         Move(x, y);
         Shoot();
+        NotAttacking();
         SwitchAnimation();
     }
-
     public void SwitchAnimation()
     {
         body_anima.SetFloat("Horizontal", x);
         body_anima.SetFloat("Vertical", y);
         head_anima.SetFloat("Horizontal", x);
         head_anima.SetFloat("Vertical", y);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)//被攻击
+    {
+        if(collision.gameObject.CompareTag("EnemyShoot") && isAttacking==false)
+        {
+            MaxHp -= 0.5f;
+            if (CurrentHp > 0.5)
+            {
+                body_anima.SetBool("isHitten", true);
+                head_anima.SetBool("isHitten", true);
+                CurrentHp -=0.5f;
+            }
+        }
+        if (CurrentHp <= 0)
+        {
+            Debug.Log("Have Died");
+            Destroy(gameObject);
+        }
     }
 }

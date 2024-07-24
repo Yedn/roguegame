@@ -117,7 +117,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.075}
@@ -327,7 +327,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.075}
@@ -523,7 +523,7 @@ GameObject:
   - component: {fileID: 1649072239362761971}
   m_Layer: 0
   m_Name: Door_U_Open
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -925,7 +925,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.075}
@@ -1058,7 +1058,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.075}
@@ -3361,8 +3361,8 @@ GameObject:
   - component: {fileID: 4006590295459940544}
   - component: {fileID: 7706803428095408797}
   m_Layer: 6
-  m_Name: Door_L_Open
-  m_TagString: Untagged
+  m_Name: Door_R_Open
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3446,7 +3446,7 @@ GameObject:
   - component: {fileID: 1891199137860351013}
   m_Layer: 0
   m_Name: Door_L_Open
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3912,6 +3912,7 @@ MonoBehaviour:
   RightHasRoom: 0
   UpHasRoom: 0
   DownHasRoom: 0
+  EnemyNum: 0
 --- !u!61 &7679195085713015378
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4053,7 +4054,7 @@ GameObject:
   - component: {fileID: 5975603306479835099}
   m_Layer: 0
   m_Name: Door_D_Open
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
