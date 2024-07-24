@@ -5,7 +5,6 @@ using UnityEngine;
 public class Room : MonoBehaviour
 {
     public GameObject DoorUp,DoorDown,DoorLeft,DoorRight;
-
     public int StepToStart;
     public int DoorNum;
     public bool LeftHasRoom, RightHasRoom, UpHasRoom, DownHasRoom;
@@ -37,6 +36,14 @@ public class Room : MonoBehaviour
         if (DownHasRoom)
         {
             DoorNum++;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            CameraControllor.instance.ChangeTarget(transform);
         }
     }
 }

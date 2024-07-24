@@ -14,6 +14,7 @@ public class RoomGenerator : MonoBehaviour
     public Color StartRoomColor, EndRoomColor, PropsRoomColor;
     private GameObject EndRoom;
     private GameObject PropsRoom;
+    public int EnemyNum = 0;
 
     [Header("LocalControl")]
     public Transform GeneratorPoint;
@@ -29,12 +30,13 @@ public class RoomGenerator : MonoBehaviour
     public List<GameObject> OneDoorRooms = new List<GameObject>();
     public List<GameObject> HalfFarRooms = new List<GameObject>();
 
+
     public enum Direction {Up, Down, Left, Right};
     public Direction direction;
     public WallType wallType;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         for (int i = 0; i < roomNum; i++)
         {
@@ -48,17 +50,10 @@ public class RoomGenerator : MonoBehaviour
         foreach (Room room in rooms)
         {
             SetUpRoom(room,room.transform.position);
-            /*
-            if (room.transform.position.sqrMagnitude > EndRoom.transform.position.sqrMagnitude)
-            {
-                EndRoom = room.gameObject;
-            }
-            */
         }
-
         FindEndRoom();
-        FindPropsRoom();
-        PropsRoom.GetComponent<SpriteRenderer>().color = PropsRoomColor;
+/*        FindPropsRoom();
+        PropsRoom.GetComponent<SpriteRenderer>().color = PropsRoomColor;*/
         EndRoom.GetComponent<SpriteRenderer>().color = EndRoomColor;
     }
 
@@ -72,6 +67,31 @@ public class RoomGenerator : MonoBehaviour
              SceneManager.LoadScene(SceneManager.GetActiveScene().name);
          }
         */
+
+        //检测要不要开门
+        if (EnemyNum ==0)
+        {
+            if (roomPrefab.GetComponent<Room>().LeftHasRoom)
+            {
+                transform.Find("Door_L_Open").gameObject.SetActive(true);
+                Destroy(transform.Find("Door_left").gameObject.GetComponent<Rigidbody2D>());
+            }
+            if (roomPrefab.GetComponent<Room>().UpHasRoom)
+            {
+                transform.Find("Door_U_Open").gameObject.SetActive(true);
+                Destroy(transform.Find("Door_up").gameObject.GetComponent<Rigidbody2D>());
+            }
+            if (roomPrefab.GetComponent<Room>().DownHasRoom)
+            {
+                transform.Find("Door_D_Open").gameObject.SetActive(true);
+                Destroy(transform.Find("Door_down").gameObject.GetComponent<Rigidbody2D>());
+            }
+            if (roomPrefab.GetComponent<Room>().RightHasRoom)
+            {
+                transform.Find("Door_R_Open").gameObject.SetActive(true);
+                Destroy(transform.Find("Door_right").gameObject.GetComponent<Rigidbody2D>());
+            }
+        }
     }
 
     public void ChangePointPos()
@@ -97,7 +117,6 @@ public class RoomGenerator : MonoBehaviour
             }
         } while (Physics2D.OverlapCircle(GeneratorPoint.position,0.2f,RoomLayer));
     }
-
     public void SetUpRoom(Room newRoom, Vector3 RoomPosition)
     {
         newRoom.UpHasRoom = Physics2D.OverlapCircle(RoomPosition + new Vector3(0, yOffset, 0), 0.2f, RoomLayer);
@@ -180,7 +199,6 @@ public class RoomGenerator : MonoBehaviour
 
         }
     }
-
     public void FindEndRoom()
     {
         for (int i = 0; i <rooms.Count; i++)
@@ -221,6 +239,13 @@ public class RoomGenerator : MonoBehaviour
         if (OneDoorRooms.Count != 0)
         {
             EndRoom = OneDoorRooms[UnityEngine.Random.Range(0, OneDoorRooms.Count)];
+            if (OneDoorRooms.Count >=2)
+            {
+                do
+                {
+                    PropsRoom = OneDoorRooms[UnityEngine.Random.Range(0, OneDoorRooms.Count)];
+                } while (PropsRoom.transform.position != EndRoom.transform.position && PropsRoom.transform.position != new Vector3(0, 0, 0));
+            }
         }
         else
         {
@@ -246,6 +271,8 @@ public class RoomGenerator : MonoBehaviour
             PropsRoom = rooms[2].gameObject;
         }
     }
+
+
 }
 
 

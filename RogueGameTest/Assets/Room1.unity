@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 1003878964}
   m_Layer: 7
   m_Name: PlayerHead
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -263,6 +263,7 @@ MonoBehaviour:
   StartRoomColor: {r: 0, g: 1, b: 0.096422195, a: 1}
   EndRoomColor: {r: 1, g: 0, b: 0.018845558, a: 1}
   PropsRoomColor: {r: 0.23217033, g: 0.8132953, b: 0.8584906, a: 0.49019608}
+  EnemyNum: 0
   GeneratorPoint: {fileID: 1846958540}
   xOffset: 18
   yOffset: 10
@@ -320,6 +321,7 @@ GameObject:
   - component: {fileID: 1795559311}
   - component: {fileID: 1795559310}
   - component: {fileID: 1795559309}
+  - component: {fileID: 1795559312}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -401,6 +403,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1795559312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795559308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ffb9820f24d4b048bfc727a17408c9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 50
+  target: {fileID: 0}
 --- !u!1 &1846958539
 GameObject:
   m_ObjectHideFlags: 0
@@ -444,9 +460,9 @@ GameObject:
   - component: {fileID: 2036293642}
   - component: {fileID: 2036293641}
   - component: {fileID: 2036293640}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PlayerControllor
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -482,6 +498,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Bullet: {fileID: 8401024319981406725, guid: 160fb4d3d57efd043b61b2379fb252c0, type: 3}
   rb: {fileID: 2036293641}
+  keyNum: 10
   head_anima: {fileID: 1003878964}
   body_anima: {fileID: 2077835267}
   speed: 3
@@ -513,7 +530,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &2036293642
 CapsuleCollider2D:
@@ -563,7 +580,7 @@ GameObject:
   - component: {fileID: 2077835267}
   m_Layer: 7
   m_Name: PlayerBody
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
