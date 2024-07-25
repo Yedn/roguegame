@@ -71,6 +71,20 @@ public class RoomGenerator : MonoBehaviour
             PropsRoom.GetComponent<SpriteRenderer>().color = PropsRoomColor;
         }
         //========================
+        //===开始门全开(除了End和道具)====
+        GameObject.FindGameObjectWithTag("Room").GetComponent<Room>().OpenTheDoor();
+        GameObject.FindGameObjectWithTag("StartRoom").GetComponent<Room>().OpenTheDoor();
+        GameObject.FindGameObjectWithTag("EndRoom").GetComponent<Room>().CloseTheDoor();
+        if (PropsRoom != null)
+        {
+            GameObject.FindGameObjectWithTag("PropsRoom").GetComponent<Room>().CloseTheDoor();
+        }
+
+        foreach (Room room in rooms)
+        {
+            room.PlayerInside();
+        }
+        //=======================
     }
 
     // Update is called once per frame
@@ -84,14 +98,21 @@ public class RoomGenerator : MonoBehaviour
          }
         */
         //=========================
-        //=====检测要不要开门===========
-        GameObject.FindGameObjectWithTag("Room").GetComponent<Room>().OpenTheDoor();
-        GameObject.FindGameObjectWithTag("StartRoom").GetComponent<Room>().OpenTheDoor();
-        GameObject.FindGameObjectWithTag("EndRoom").GetComponent<Room>().OpenTheDoor();
-        if (PropsRoom != null)
+
+        foreach (Room room in rooms)
         {
-            GameObject.FindGameObjectWithTag("PropsRoom").GetComponent<Room>().OpenTheDoor();
+            room.PlayerInside();
+            room.ControlDoor();
         }
+
+        //=======怪没了开门============
+/*        foreach (Room room in rooms) 
+        {
+            if(room.EnemyNum==0)
+            {
+                room.GetComponent<Room>().OpenTheDoor();
+            }
+        }*/
         //==========================
     }
     
@@ -251,7 +272,7 @@ public class RoomGenerator : MonoBehaviour
     
     public void FindPropsRoom()//找是否有道具房间 (！！！注:可能没有！！！)
     {
-        HalfStep = MaxStep / 2+1;
+        HalfStep = MaxStep / 2;
         foreach (Room room in rooms)
         {
             if ((room.StepToStart == HalfStep || room.StepToStart == HalfStep-1) && room.StepToStart !=0)

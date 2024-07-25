@@ -10,6 +10,8 @@ TagManager:
   - PropsRoom
   - StartRoom
   - Room
+  - Enemy
+  - EnemyShoot
   layers:
   - Default
   - TransparentFX

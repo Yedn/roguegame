@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1289385306931057821}
   - component: {fileID: 5938180046336286886}
   - component: {fileID: 2234423571617148596}
+  - component: {fileID: 3143273494629074781}
   m_Layer: 0
   m_Name: Door_left
   m_TagString: Door
@@ -133,6 +134,33 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.25, y: 0.2}
   m_EdgeRadius: 0
+--- !u!50 &3143273494629074781
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 11128231052067387}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &56490469619540669
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,6 +249,7 @@ GameObject:
   - component: {fileID: 1729815987878947059}
   - component: {fileID: 4355319439753060655}
   - component: {fileID: 674978723304557655}
+  - component: {fileID: 6050444294238853499}
   m_Layer: 0
   m_Name: Door_up
   m_TagString: Door
@@ -341,8 +370,35 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.25, y: 0.2}
+  m_Size: {x: 0.25, y: 0.15}
   m_EdgeRadius: 0
+--- !u!50 &6050444294238853499
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 850443159740644385}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1051608498298509269
 GameObject:
   m_ObjectHideFlags: 0
@@ -527,7 +583,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5197065968335805100
 Transform:
   m_ObjectHideFlags: 0
@@ -819,6 +875,7 @@ GameObject:
   - component: {fileID: 7682912116494764226}
   - component: {fileID: 62301986474679329}
   - component: {fileID: 1736739834869554949}
+  - component: {fileID: 154405385766218214}
   m_Layer: 6
   m_Name: Door_right
   m_TagString: Door
@@ -941,6 +998,33 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.25, y: 0.2}
   m_EdgeRadius: 0
+--- !u!50 &154405385766218214
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3153190566367835452}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &3387707231825740582
 GameObject:
   m_ObjectHideFlags: 0
@@ -952,6 +1036,7 @@ GameObject:
   - component: {fileID: 2312041970033326922}
   - component: {fileID: 4251294747960127878}
   - component: {fileID: 229224682875051494}
+  - component: {fileID: 6849115656823036274}
   m_Layer: 0
   m_Name: Door_down
   m_TagString: Door
@@ -1074,6 +1159,33 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.25, y: 0.2}
   m_EdgeRadius: 0
+--- !u!50 &6849115656823036274
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3387707231825740582}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &4806589928380162814
 GameObject:
   m_ObjectHideFlags: 0
@@ -3366,7 +3478,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4006590295459940544
 Transform:
   m_ObjectHideFlags: 0
@@ -3450,7 +3562,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4182053538573966365
 Transform:
   m_ObjectHideFlags: 0
@@ -3910,9 +4022,11 @@ MonoBehaviour:
   DoorNum: 0
   LeftHasRoom: 0
   RightHasRoom: 0
-  UpHasRoom: 0
+  UpHasRoom: 1
   DownHasRoom: 0
   EnemyNum: 0
+  Collider: {fileID: 602233449022473031}
+  PlayerInRoom: 0
 --- !u!61 &7679195085713015378
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4058,7 +4172,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4371677249992861425
 Transform:
   m_ObjectHideFlags: 0
