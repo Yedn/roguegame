@@ -6,10 +6,7 @@ public class EnemyControllor : MonoBehaviour
 {
     [Header("LocalControl")]
     public List<GameObject> EnemyList = new List<GameObject>();
-    public float x;
-    public float y;
     public Transform PointPos;
-
 
     [Header("EnemyType")]
     public EnemyType enemy;
@@ -27,7 +24,7 @@ public class EnemyControllor : MonoBehaviour
         
     }
 
-    public void SetUpEnemy(int EnemyNum,Transform SetUpPos)
+    public void SetUpEnemy(int EnemyNum,Transform SetUpPos)//随机生成EnemyNum个怪
     {
         for(int i = 0;i<EnemyNum;i++)
         {
@@ -35,16 +32,16 @@ public class EnemyControllor : MonoBehaviour
             switch (enemyType)
             {
                 case Enemytype.Spider:
-                    EnemyList.Add(Instantiate(enemy.Spider, new Vector3(SetUpPos.position.x + UnityEngine.Random.Range(-8.0f, 9.0f), SetUpPos.position.y + UnityEngine.Random.Range(-3.0f, 3.0f), SetUpPos.position.z), Quaternion.identity));
+                    EnemyList.Add(Instantiate(enemy.Spider, new Vector3(SetUpPos.position.x + UnityEngine.Random.Range(-8.0f, 8.0f), SetUpPos.position.y + UnityEngine.Random.Range(-3.0f, 3.0f), SetUpPos.position.z), Quaternion.identity));
                     break;
                 case Enemytype.Clotty:
-                    EnemyList.Add(Instantiate(enemy.Clotty, new Vector3(SetUpPos.position.x + UnityEngine.Random.Range(-8.0f, 9.0f), SetUpPos.position.y + UnityEngine.Random.Range(-3.0f, 3.0f), SetUpPos.position.z), Quaternion.identity));
+                    EnemyList.Add(Instantiate(enemy.Clotty, new Vector3(SetUpPos.position.x + UnityEngine.Random.Range(-8.0f, 8.0f), SetUpPos.position.y + UnityEngine.Random.Range(-3.0f, 3.0f), SetUpPos.position.z), Quaternion.identity));
                     break;
                 case Enemytype.RoundWorm:
-                    EnemyList.Add(Instantiate(enemy.RoundWorm, new Vector3(SetUpPos.position.x + UnityEngine.Random.Range(-8.0f, 9.0f), SetUpPos.position.y + UnityEngine.Random.Range(-3.0f, 3.0f), SetUpPos.position.z), Quaternion.identity));
+                    EnemyList.Add(Instantiate(enemy.RoundWorm, new Vector3(SetUpPos.position.x + UnityEngine.Random.Range(-8.0f, 8.0f), SetUpPos.position.y + UnityEngine.Random.Range(-3.0f, 3.0f), SetUpPos.position.z), Quaternion.identity));
                     break;
                 case Enemytype.Fatty:
-                    EnemyList.Add(Instantiate(enemy.Fatty, new Vector3(SetUpPos.position.x + UnityEngine.Random.Range(-8.0f, 9.0f), SetUpPos.position.y + UnityEngine.Random.Range(-3.0f, 3.0f), SetUpPos.position.z), Quaternion.identity));
+                    EnemyList.Add(Instantiate(enemy.Fatty, new Vector3(SetUpPos.position.x + UnityEngine.Random.Range(-8.0f, 8.0f), SetUpPos.position.y + UnityEngine.Random.Range(-3.0f, 3.0f), SetUpPos.position.z), Quaternion.identity));
                     break;
             }
         }

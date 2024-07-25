@@ -21,13 +21,15 @@ public class PlayerControllor : MonoBehaviour
     [Header("PlayerInformation")]
     public float MaxHp = 6.0f;
     public float CurrentHp;
-
     public float shootatk = 5;
     public float boomatk = 10;
     public int keyNum = 0;
     public int Money = 0;
 
     private bool isAttacking = false;
+
+    [Header("PlayerLocal")]
+    public Room room = null;
 
     void Move(float x, float y)
     {
@@ -73,7 +75,6 @@ public class PlayerControllor : MonoBehaviour
             isAttacking = true;
         }
     }//Arrow¼üÉä»÷
-
     void NotAttacking()//Î´ÔÚ¹¥»÷
     {
         if (Input.GetAxisRaw("Vertical")==0 && Input.GetAxisRaw("Horizontal")==0)
@@ -99,7 +100,7 @@ public class PlayerControllor : MonoBehaviour
         NotAttacking();
         SwitchAnimation();
     }
-    public void SwitchAnimation()
+    public void SwitchAnimation()//¶¯»­ÇÐ»»
     {
         body_anima.SetFloat("Horizontal", x);
         body_anima.SetFloat("Vertical", y);

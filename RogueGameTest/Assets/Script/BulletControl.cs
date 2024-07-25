@@ -24,7 +24,6 @@ public class BulletControl : MonoBehaviour
     public void SetDirection(Vector2 dir)
     {
         _Direction = dir;
-        Debug.Log(dir.x +" , " + dir.y);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

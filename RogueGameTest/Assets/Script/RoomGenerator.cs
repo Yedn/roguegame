@@ -40,7 +40,7 @@ public class RoomGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        
+        //======Create All Room=======
         for (int i = 0; i < roomNum; i++)
         {
             rooms.Add(Instantiate(roomPrefab, GeneratorPoint.position, Quaternion.identity).GetComponent<Room>());
@@ -49,6 +49,7 @@ public class RoomGenerator : MonoBehaviour
         }
         rooms[0].GetComponent<SpriteRenderer>().color = StartRoomColor;
         rooms[0].tag = "StartRoom";
+        //========================
 
         //==find end room and propsroom==
         foreach (Room room in rooms)
@@ -69,33 +70,32 @@ public class RoomGenerator : MonoBehaviour
         {
             PropsRoom.GetComponent<SpriteRenderer>().color = PropsRoomColor;
         }
-
-
-        
         //========================
     }
 
     // Update is called once per frame
     void Update()
     {
-        //测试生成效果
+        //=====anyKey测试生成效果=======
         /* 
          if (Input.anyKeyDown)
          {
              SceneManager.LoadScene(SceneManager.GetActiveScene().name);
          }
         */
-        //检测要不要开门
+        //=========================
+        //=====检测要不要开门===========
         GameObject.FindGameObjectWithTag("Room").GetComponent<Room>().OpenTheDoor();
         GameObject.FindGameObjectWithTag("StartRoom").GetComponent<Room>().OpenTheDoor();
         GameObject.FindGameObjectWithTag("EndRoom").GetComponent<Room>().OpenTheDoor();
-        if (PropsRoom !=null)
+        if (PropsRoom != null)
         {
             GameObject.FindGameObjectWithTag("PropsRoom").GetComponent<Room>().OpenTheDoor();
         }
+        //==========================
     }
-    //随机生成房间中心点
-    public void ChangePointPos()
+    
+    public void ChangePointPos()//随机生成房间中心点
     {
         do
         {
@@ -117,8 +117,8 @@ public class RoomGenerator : MonoBehaviour
             }
         } while (Physics2D.OverlapCircle(GeneratorPoint.position,0.2f,RoomLayer));
     }
-    //初始化房间
-    public void SetUpRoom(Room newRoom, Vector3 RoomPosition)
+    
+    public void SetUpRoom(Room newRoom, Vector3 RoomPosition)//初始化房间
     {
         newRoom.UpHasRoom = Physics2D.OverlapCircle(RoomPosition + new Vector3(0, yOffset, 0), 0.2f, RoomLayer);
         newRoom.DownHasRoom = Physics2D.OverlapCircle(RoomPosition + new Vector3(0, -yOffset, 0), 0.2f, RoomLayer);
@@ -200,8 +200,8 @@ public class RoomGenerator : MonoBehaviour
 
         }
     }
-    //找结束房间
-    public void FindEndRoom()
+    
+    public void FindEndRoom()//找结束房间
     {
         for (int i = 0; i <rooms.Count; i++)
         {
@@ -248,8 +248,8 @@ public class RoomGenerator : MonoBehaviour
         }
         EndRoom.tag = "EndRoom";
     }
-    //找是否有道具房间
-    public void FindPropsRoom()
+    
+    public void FindPropsRoom()//找是否有道具房间 (！！！注:可能没有！！！)
     {
         HalfStep = MaxStep / 2+1;
         foreach (Room room in rooms)
@@ -272,8 +272,8 @@ public class RoomGenerator : MonoBehaviour
             PropsRoom.tag = "PropsRoom";
         }
     }
-    //随机生成房间敌人数量
-    public void RandomEnemyNum()
+    
+    public void RandomEnemyNum()//随机生成房间敌人数量
     {
         foreach (var room in rooms)
         {
@@ -283,7 +283,7 @@ public class RoomGenerator : MonoBehaviour
             }
             else
             {
-                room.EnemyNum = UnityEngine.Random.Range(4,9);
+                room.EnemyNum = UnityEngine.Random.Range(3,9);
             }
         }
     }

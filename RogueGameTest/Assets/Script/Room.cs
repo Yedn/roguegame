@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 public class Room : MonoBehaviour
@@ -46,42 +47,74 @@ public class Room : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)//玩家碰门
+    private void OnTriggerEnter2D(Collider2D collision)//玩家碰门检测
     {
         if (collision.CompareTag("Player"))
         {
+            OpenTheDoor();
             CameraControllor.instance.ChangeTarget(transform);
         }
     }
 
-    public void OpenTheDoor()
+    public void OpenTheDoor()//开门 Show开门图层 && 删除刚体
     {
-        if (EnemyNum == 0)
+        if (LeftHasRoom)
         {
-            if (LeftHasRoom)
-            {
-                transform.Find("Door_left").Find("Door_L_Open").gameObject.SetActive(true);
-                //transform.Find("Door_L_Open").gameObject.SetActive(true);
-                Destroy(transform.Find("Door_left").gameObject.GetComponent<Rigidbody2D>());
-            }
-            if (UpHasRoom)
-            {
-                transform.Find("Door_up").Find("Door_U_Open").gameObject.SetActive(true);
-                //transform.Find("Door_U_Open").gameObject.SetActive(true);
-                Destroy(transform.Find("Door_up").gameObject.GetComponent<Rigidbody2D>());
-            }
-            if (DownHasRoom)
-            {
-                transform.Find("Door_down").Find("Door_D_Open").gameObject.SetActive(true);
-                //transform.Find("Door_D_Open").gameObject.SetActive(true);
-                Destroy(transform.Find("Door_down").gameObject.GetComponent<Rigidbody2D>());
-            }
-            if (RightHasRoom)
-            {
-                transform.Find("Door_right").Find("Door_R_Open").gameObject.SetActive(true);
-                //transform.Find("Door_R_Open").gameObject.SetActive(true);
-                Destroy(transform.Find("Door_right").gameObject.GetComponent<Rigidbody2D>());
-            }
+            transform.Find("Door_left").Find("Door_L_Open").gameObject.SetActive(true);
+            Destroy(transform.Find("Door_left").gameObject.GetComponent<Rigidbody2D>());
+            Debug.Log("Opend Left");
         }
-    }//开门
+        if (UpHasRoom)
+        {
+            transform.Find("Door_up").Find("Door_U_Open").gameObject.SetActive(true);
+            Destroy(transform.Find("Door_up").gameObject.GetComponent<Rigidbody2D>());
+            Debug.Log("Opend Up");
+        }
+        if (DownHasRoom)
+        {
+            transform.Find("Door_down").Find("Door_D_Open").gameObject.SetActive(true);
+            Destroy(transform.Find("Door_down").gameObject.GetComponent<Rigidbody2D>());
+            Debug.Log("Opend Down");
+        }
+        if (RightHasRoom)
+        {
+            transform.Find("Door_right").Find("Door_R_Open").gameObject.SetActive(true);
+            Destroy(transform.Find("Door_right").gameObject.GetComponent<Rigidbody2D>());
+            Debug.Log("Opend Right");
+        }
+
+        if (EnemyNum != 0)
+        {
+            Invoke(nameof(CloseTheDoor), 1.0f);
+            Debug.Log("Closed");
+        }
+    }
+
+    public void CloseTheDoor()//关门 关开门图层 && 添加刚体
+    {
+        if (LeftHasRoom)
+        {
+            transform.Find("Door_left").Find("Door_L_Open").gameObject.SetActive(false);
+            transform.Find("Door_left").gameObject.AddComponent<Rigidbody2D>();
+            transform.Find("Door_left").gameObject.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
+        }
+        if (UpHasRoom)
+        {
+            transform.Find("Door_up").Find("Door_U_Open").gameObject.SetActive(false);
+            transform.Find("Door_up").gameObject.AddComponent<Rigidbody2D>();
+            transform.Find("Door_up").gameObject.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
+        }
+        if (DownHasRoom)
+        {
+            transform.Find("Door_down").Find("Door_D_Open").gameObject.SetActive(false);
+            transform.Find("Door_down").gameObject.AddComponent<Rigidbody2D>();
+            transform.Find("Door_down").gameObject.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
+        }
+        if (RightHasRoom)
+        {
+            transform.Find("Door_right").Find("Door_R_Open").gameObject.SetActive(false);
+            transform.Find("Door_right").gameObject.AddComponent<Rigidbody2D>();
+            transform.Find("Door_right").gameObject.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
+        }
+    }
 }
