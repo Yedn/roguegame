@@ -62,7 +62,7 @@ public class RoomGenerator : MonoBehaviour
 
         for (int i = 0; i < roomNum; i++)
         {
-            GameObject.Find("EnemyControllor").GetComponent<EnemyControllor>().SetUpEnemy(rooms[i].EnemyNum, rooms[i].transform);
+            GameObject.Find("EnemyControllor").GetComponent<EnemyControllor>().SetUpEnemy(rooms[i].EnemyNum, rooms[i].transform, rooms[i].enemyList);
         }
 
         EndRoom.GetComponent<SpriteRenderer>().color = EndRoomColor;

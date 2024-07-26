@@ -13,10 +13,13 @@ public class Room : MonoBehaviour
     public int DoorNum;//有几个门
     public bool LeftHasRoom, RightHasRoom, UpHasRoom, DownHasRoom;//四个方向有没有门
     public int EnemyNum;//房间内敌人数量
+    public List<GameObject> enemyList = new List<GameObject>();
+
 
     public BoxCollider2D Collider;
 
-    public bool PlayerInRoom=false;
+    public bool PlayerInRoom=false;//玩家在不在房间
+    public bool HasExplored = false;//有没有来过这个房间
     private void Awake()
     {
         room = GetComponent<Room>();
@@ -58,6 +61,7 @@ public class Room : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             CameraControllor.instance.ChangeTarget(transform);
+            ControlDoor();
         }
     }
     public void ControlDoor()
@@ -76,6 +80,8 @@ public class Room : MonoBehaviour
         if (Collider.bounds.Contains( GameObject.Find("PlayerControllor").transform.position))
         {
             PlayerInRoom = true;
+            HasExplored = true;
+            Debug.Log("StartRoom");
         }
         else
         {
@@ -128,7 +134,7 @@ public class Room : MonoBehaviour
             if (GameObject.Find("Door_left").GetComponent<Rigidbody2D>() == null)
             {
                 GameObject.Find("Door_left").AddComponent<Rigidbody2D>();
-                GameObject.Find("Door_left").GetComponent<Rigidbody2D>().gravityScale = 0.0f;
+                GameObject.Find("Door_left").GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
             }
         }
         if (UpHasRoom)
@@ -138,7 +144,7 @@ public class Room : MonoBehaviour
             if (GameObject.Find("Door_up").GetComponent<Rigidbody2D>() == null)
             {
                 GameObject.Find("Door_up").AddComponent<Rigidbody2D>();
-                GameObject.Find("Door_up").GetComponent<Rigidbody2D>().gravityScale = 0.0f;
+                GameObject.Find("Door_up").GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
             }
         }
         if (DownHasRoom)
@@ -148,7 +154,7 @@ public class Room : MonoBehaviour
             if (GameObject.Find("Door_down").GetComponent<Rigidbody2D>() == null)
             {
                 GameObject.Find("Door_down").AddComponent<Rigidbody2D>();
-                GameObject.Find("Door_down").GetComponent<Rigidbody2D>().gravityScale = 0.0f;
+                GameObject.Find("Door_down").GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
             }
         }
         if (RightHasRoom)
@@ -158,7 +164,7 @@ public class Room : MonoBehaviour
             if (GameObject.Find("Door_right").GetComponent<Rigidbody2D>() == null)
             {
                 GameObject.Find("Door_right").AddComponent<Rigidbody2D>();
-                GameObject.Find("Door_right").GetComponent<Rigidbody2D>().gravityScale = 0.0f;
+                GameObject.Find("Door_right").GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
             }
         }
     }
